@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import { FadeTransform } from 'react-animation-components';
 
 class Header extends Component {
 
@@ -40,8 +41,10 @@ class Header extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col">
-                                <h1>NuCamp</h1>
-                                <h2>a better way to camp</h2>
+                                <FadeTransform in transformProps={{ enterTransform: 'translateX(100px)' }}>
+                                    <h1>NuCamp</h1>
+                                    <h2>a better way to camp</h2>
+                                </FadeTransform>
                             </div>
                         </div>
                     </div>
@@ -52,6 +55,8 @@ class Header extends Component {
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
+                          
+                           
                                 <NavItem>
                                     <NavLink className="nav-link" to="/home">
                                         <i className="fa fa-home fa-lg" />Home
@@ -72,6 +77,8 @@ class Header extends Component {
                                         <i className="fa fa-address-card fa-lg" />Contact Us
                                     </NavLink>
                                 </NavItem>
+                             
+                               
                             </Nav>
                             <span className="navbar-text ml-auto">
                                 <Button outline onClick={this.toggleModal}>
@@ -83,6 +90,11 @@ class Header extends Component {
                 </Navbar> 
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateX(50%)'
+                }}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleLogin}>                            
@@ -106,6 +118,7 @@ class Header extends Component {
                             <Button type="submit" value="submit" color="primary">Login</Button>
                         </Form>                      
                     </ModalBody>
+                    </FadeTransform>
                 </Modal>
             </React.Fragment>
         );
